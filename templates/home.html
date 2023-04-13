@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sk Database</title>
+		<link rel="stylesheet" href="/static/style.css" />
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<h1>StyleSasi</h1>
+				<img src="/static/bat_logo.png" alt="Bat" />
+			</div>
+			<p id="link1">Student Details</p>
+			<div class="buttons">
+				<a href="{{url_for('InsertUser')}}" class="add">Add Student</a>
+				<a
+					onclick="return confirm('Are you confirm to continue ? ');"
+					href="{{url_for('clear')}}"
+					class="clear"
+					>Clear All</a
+				>
+			</div>
+		</div>
+		<hr />
+		<div class="Container">
+			<div class="table">
+				<table>
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>Name</td>
+							<td>Age</td>
+							<td>Subject</td>
+							<td>City</td>
+							<td>Edit</td>
+							<td>Delete</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for data in datas%}
+						<tr>
+							<td>{{data.ID}}</td>
+							<td>{{data.NAME}}</td>
+							<td>{{data.AGE}}</td>
+							<td>{{data.SUBJECT}}</td>
+							<td>{{data.CITY}}</td>
+							<td>
+								<a class="edit" href="{{url_for('EditUser',Id=data.ID)}}"
+									>Edit</a
+								>
+							</td>
+							<td>
+								<a
+									class="delete"
+									onclick="return confirm('Are you confirm to Delete ? ');"
+									href="{{url_for('DeleteUser',Id=data.ID)}}"
+									>Delete</a
+								>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
